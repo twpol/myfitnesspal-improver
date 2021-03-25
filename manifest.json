@@ -1,15 +1,23 @@
 {
-	"manifest_version": 2,
+  "manifest_version": 2,
 
-	"name": "MyFitnessPal Improver",
-	"description": "This extension improves MyFitnessPal's display of remaining calories.",
-	"version": "1.0",
+  "name": "MyFitnessPal Improver",
+  "description": "This extension improves MyFitnessPal's displays.",
+  "version": "1.1",
 
-	"content_scripts": [
-		{
-			"matches": ["http://www.myfitnesspal.com/food/diary/*"],
-			"js": ["js/diary.js"],
-			"run_at": "document_end"
-		}
-	]
+  "content_scripts": [
+    {
+      "matches": ["https://www.myfitnesspal.com/"],
+      "js": ["js/home.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": [
+        "https://www.myfitnesspal.com/food/diary/*",
+        "https://www.myfitnesspal.com/food/diary?*"
+      ],
+      "js": ["js/diary.js", "js/daily-chart.js"],
+      "run_at": "document_end"
+    }
+  ]
 }
