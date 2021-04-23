@@ -1,7 +1,12 @@
 (function () {
   /** @type {(node: Node) => number} */
   function getElementNumber(element) {
-    return 1 * (element.value || element.innerText).trim().replace(",", "");
+    return (
+      1 *
+      ((element.value || element.innerText).trim() || "0")
+        .match(/[0-9.,]+/)[0]
+        .replace(",", "")
+    );
   }
 
   /** @type {(tagName: string, properties: {}, style: CSSStyleDeclaration, ...children: Node) => Node} */
@@ -69,6 +74,7 @@
       "#FFC000",
       "#5B9BD5",
       "#70AD47",
+      "#4472C4",
     ];
 
     const mealNames = [
@@ -82,6 +88,14 @@
     const dailyGoal = getElementNumber(
       document.querySelector("tr.total.alt > td:nth-child(2)")
     );
+    const extra = getElementNumber(
+      document.querySelector("#diary-table .extra")
+    );
+    if (extra > 0) {
+      mealNames.push("Exercise");
+      mealTarget.push(extra);
+      mealConsumed.push(0);
+    }
 
     const target = mealTarget.reduce((c, m) => c + m, 0);
     const consumed = mealConsumed.reduce((c, m) => c + m, 0);
