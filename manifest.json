@@ -3,7 +3,7 @@
 
   "name": "MyFitnessPal Improver",
   "description": "This extension improves MyFitnessPal's displays.",
-  "version": "1.2",
+  "version": "1.2.1",
 
   "content_scripts": [
     {

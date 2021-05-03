@@ -1,12 +1,12 @@
 (function () {
   /** @type {(node: Node) => number} */
   function getElementNumber(element) {
-    return (
-      1 *
-      ((element.value || element.innerText).trim() || "0")
-        .match(/[0-9.,]+/)[0]
-        .replace(",", "")
-    );
+    return element
+      ? 1 *
+          ((element.value || element.innerText).trim() || "0")
+            .match(/-?[0-9.,]+/)[0]
+            .replace(",", "")
+      : 0;
   }
 
   /** @type {(tagName: string, properties: {}, style: CSSStyleDeclaration, ...children: Node) => Node} */
